@@ -1,6 +1,5 @@
 package PageObjects;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -29,35 +28,25 @@ public class HomePage extends Page {
     @FindBy(id = "q")
     private WebElement inputTextBox;
 
-    private final WebDriver driver;
 
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public Chapter1Page clickChapter1Link() {
+    public void clickChapter1Link() {
         chapter1Link.click();
-        return new Chapter1Page(driver);
     }
 
-    public Chapter2Page clickChapter2Link() {
+    public void clickChapter2Link() {
         chapter2Link.click();
-        return new Chapter2Page(driver);
     }
 
-    public Chapter3Page clickChapter3ink() {
+    public void clickChapter3ink() {
         chapter3Link.click();
-        return new Chapter3Page(driver);
     }
 
-    public Chapter4Page clickChapter4Link() {
+    public void clickChapter4Link() {
         chapter4Link.click();
-        return new Chapter4Page(driver);
     }
 
-    public Chapter8Page clickChapter8Link() {
+    public void clickChapter8Link() {
         chapter8Link.click();
-        return new Chapter8Page(driver);
     }
 
     public void setInputTextBoxValue(String value) {

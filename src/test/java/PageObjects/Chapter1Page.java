@@ -1,6 +1,5 @@
 package PageObjects;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -9,15 +8,13 @@ import org.openqa.selenium.support.FindBy;
  */
 public class Chapter1Page extends Page {
 
-    private final WebDriver driver;
+    public static final String URL = HomePage.URL + "chapter1";
 
     @FindBy(id = "radiobutton")
     private WebElement radioButton;
 
-    /************/
     @FindBy(id = "selecttype")
     private WebElement dropDownListSelector;
-    /***********/
 
     @FindBy(name = "selected(1234)")
     private WebElement checkBox;
@@ -34,11 +31,6 @@ public class Chapter1Page extends Page {
     // ...
     // other elements on the page
 
-
-    public Chapter1Page(WebDriver driver) {
-        this.driver = driver;
-    }
-
     public boolean selectRadioButton() {
         radioButton.click();
         return radioButton.isSelected();
@@ -49,9 +41,8 @@ public class Chapter1Page extends Page {
         return checkBox.isSelected();
     }
 
-    public HomePage clickHomePageLink() {
+    public void clickHomePageLink() {
         homePageLink.click();
-        return new HomePage(driver);
     }
 
     public void setHiddenInputTextBoxValue(String value) {
@@ -62,5 +53,8 @@ public class Chapter1Page extends Page {
     public String getTextFromVerifiableTextElement() {
         return verifiableTextElement.getText();
     }
+
+    // ...
+    // other possible actions with elements
 
 }

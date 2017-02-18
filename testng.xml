@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Default Suite">
+    <test name="TestingTaskSelenium">
+        <classes>
+            <class name="ProvTest">
+                <methods>
+                    <include name="testTextAvailability"/>
+                </methods>
+            </class> <!-- ProvTest -->
+        </classes>
+    </test> <!-- TestingTaskSelenium -->
+</suite> <!-- Default Suite -->

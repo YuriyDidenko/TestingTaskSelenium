@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 /**
  * Should be realized to represent PageObject for Chapter8 page
  */
-public class Chapter8Page extends Page {
+class Chapter8Page extends Page {
 
     private final WebDriver driver;
 
