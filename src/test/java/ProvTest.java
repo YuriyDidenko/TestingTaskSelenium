@@ -1,46 +1,45 @@
 import PageObjects.Chapter1Page;
 import PageObjects.HomePage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class ProvTest {
 
-    private WebDriver firefoxDriver;
+    private WebDriver driver;
     private HomePage homePage;
     private Chapter1Page chapter1Page;
 
-    @BeforeSuite
-    public void beforeSuite() {
-        System.out.println("@BeforeSuite");
+    @BeforeTest
+    @Parameters("browser")
+    public void beforeTest(String browser) throws Exception {
+        if ("firefox".equalsIgnoreCase(browser)) {
+            driver = new FirefoxDriver();
+        } else if ("chrome".equalsIgnoreCase(browser)) {
+            System.setProperty("webdriver.chrome.driver", "D:/chromedriver.exe");
+            driver = new ChromeDriver();
+        } else {
+            throw new Exception("Wrong parameter for browser.");
+        }
 
-        firefoxDriver = new FirefoxDriver();
-
-        homePage = PageFactory.initElements(firefoxDriver, HomePage.class);
-        chapter1Page = PageFactory.initElements(firefoxDriver, Chapter1Page.class);
+        homePage = PageFactory.initElements(driver, HomePage.class);
+        chapter1Page = PageFactory.initElements(driver, Chapter1Page.class);
     }
 
     @BeforeMethod
     public void beforeMethod() {
-        System.out.println("@BeforeMethod");
-
-        // go to home page
-        firefoxDriver.get(HomePage.URL);
+        driver.get(HomePage.URL);
     }
 
     @Test(description = "checks availability of text")
     public void testTextAvailability() {
-        System.out.println("test");
-
-        Assert.assertEquals(firefoxDriver.getCurrentUrl(), HomePage.URL);
+        Assert.assertEquals(driver.getCurrentUrl(), HomePage.URL);
 
         homePage.clickChapter1Link();
-        Assert.assertEquals(firefoxDriver.getCurrentUrl(), Chapter1Page.URL);
+        Assert.assertEquals(driver.getCurrentUrl(), Chapter1Page.URL);
 
         String actualValue = chapter1Page.getTextFromVerifiableTextElement();
         String expectedValue = "Assert that this text is on the page";
@@ -48,13 +47,12 @@ public class ProvTest {
 
         // this action and assertion is not necessary, cause we make the same before each test method
         chapter1Page.clickHomePageLink();
-        Assert.assertEquals(firefoxDriver.getCurrentUrl(), HomePage.URL);
+        Assert.assertEquals(driver.getCurrentUrl(), HomePage.URL);
     }
 
-    @AfterSuite
-    public void afterSuite() {
-        System.out.println("@AfterSuite");
-        firefoxDriver.quit();
+    @AfterTest
+    public void afterTest() {
+        driver.quit();
     }
 
 }

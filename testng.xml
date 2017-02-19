@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Default Suite">
-    <test name="TestingTaskSelenium">
+    <test name="FirefoxTest">
+        <parameter name="browser" value="firefox"/>
         <classes>
             <class name="ProvTest">
                 <methods>
                     <include name="testTextAvailability"/>
                 </methods>
-            </class> <!-- ProvTest -->
+            </class>
         </classes>
-    </test> <!-- TestingTaskSelenium -->
-</suite> <!-- Default Suite -->
+    </test>
+    <test name="ChromeTest">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="ProvTest">
+                <methods>
+                    <include name="testTextAvailability"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
